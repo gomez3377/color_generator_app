@@ -1,0 +1,48 @@
+
+:root{
+    --light-color:#f0f7f4;
+    --dark-color:#040f0f;
+}
+
+body{
+    background-color: var(--light-color);
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.color-block-container{
+    margin: auto;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.color-block{
+    width: calc(100%/6);
+    height: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+   
+}
+.title{
+    text-align: center;
+}
+
+button {
+    display: grid;
+    margin: auto;
+    margin-top: 2rem;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-family: "Karla", sans-serif;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
