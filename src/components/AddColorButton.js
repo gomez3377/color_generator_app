@@ -2,6 +2,8 @@ import React from "react";
 
 export default function AddColorButton(props){
     return(
-        <button onClick={props.addColor}>Add</button>
+        <button className="add-color-button" onClick={props.addColor}>
+            <i class="fa-solid fa-plus"></i>
+        </button>
     )
 }

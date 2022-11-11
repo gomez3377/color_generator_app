@@ -2,6 +2,7 @@ import React from "react";
 import AddColorButton from "./components/AddColorButton";
 import ColorBlock from "./components/ColorBlock";
 import Header from "./components/Header";
+import { nanoid } from "nanoid";
 
 function App() {
   const [colors, setColors] = React.useState(generateColors());
@@ -9,16 +10,17 @@ function App() {
   function generateColors() {
     const colorArray = [];
     for (let i = 0; i < 6; i++) {
-      colorArray.push(generateColorObject())
+      colorArray.push(generateColorObject());
     }
-    return colorArray
+    return colorArray;
   }
   function generateColorObject() {
     const colorObject = {
-        isLocked: false,
-        colorValue:generateRgbaValues()
-    }
-    return colorObject
+      id: nanoid(),
+      isLocked: false,
+      colorValue: generateRgbaValues(),
+    };
+    return colorObject;
   }
 
   // function generateHexValues(){
@@ -39,30 +41,48 @@ function App() {
   }
 
   function generateNewColors() {
-    setColors(prevColors => prevColors.map(color => {
-      return generateColorObject()
-    }))
+    setColors((prevColors) =>
+      prevColors.map((color) => {
+        return color.isLocked ? color : generateColorObject();
+      })
+    );
   }
-    
 
+  const displayColors = colors.map((color) => (
+    <ColorBlock
+      key={color.id}
+      id={color.id}
+      isLocked={color.isLocked}
+      value={color.colorValue}
+      lockColor={() => lockColor(color.id)}
+      deleteColor={() => deleteColor(color.id)}
+    />
+  ));
 
-  const displayColors = colors.map(color => <ColorBlock value={color.colorValue} />)
-
-
-
-  function addColorBlock(){
-    const colorBlockLimit = 10
-    if(colors.length < colorBlockLimit){
-      setColors(prevColors => [
-        ...prevColors, 
-       generateColorObject()
-      ])
+  function addColorBlock() {
+    const colorBlockLimit = 10;
+    if (colors.length < colorBlockLimit) {
+      setColors((prevColors) => [...prevColors, generateColorObject()]);
     }
   }
-  function lockColor(){
-
+  function lockColor(currentId) {
+    setColors((prevColors) =>
+      prevColors.map((color) => {
+        return color.id === currentId
+          ? { ...color, isLocked: !color.isLocked }
+          : color;
+      })
+    );
   }
-  
+
+  function deleteColor(currentId) {
+    if (colors.length > 2) {
+      setColors((prevColors) =>
+        prevColors.filter((color) => color.id !== currentId)
+      );
+    }
+  }
+
   return (
     <div className="App">
       <Header />

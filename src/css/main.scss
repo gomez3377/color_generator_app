@@ -13,27 +13,66 @@ body{
 
 .color-block-container{
     margin: auto;
-    width: 90%;
+    max-width: 90%;
+    height: 70vh;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    
+    position: relative;
+    .add-color-button{
+        display: none;
+        background-color: rgba(255,255,255,0.5);
+        color: rgba(0,0,0,0.5);
+        position: absolute;
+        right: 0rem;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 1rem;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .add-color-button:hover{
+        display: block;
+        background-color: aqua;
+    }
 }
 
 .color-block{
+    position: relative;
     width: calc(100%/6);
-    height: 30rem;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-   
+    .color-block-options{
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        top: 50%;
+        transform: translateY(-50%);
+        .color-block-button{
+            background-color: transparent;
+            width: 2rem;
+            margin: auto;
+            i{
+                margin-top: 0.5rem;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+        }
+    }
+    .color-value-text{
+        font-size: 75%;
+        text-align: center;
+    }
 }
 .title{
     text-align: center;
 }
 
+
 button {
-    display: grid;
+    // display: grid;
     margin: auto;
     margin-top: 2rem;
     border: none;
